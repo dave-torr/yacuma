@@ -1,7 +1,7 @@
 import nextConnect from 'next-connect';
 import authMidWare from '../../../middleware/yacuUserMid';
 
-import passport from "./../../../utils/yacuma/passport"
+import passport from "./../../../utils/auth/passport"
 
 const handler = nextConnect()
 handler.use(authMidWare)
