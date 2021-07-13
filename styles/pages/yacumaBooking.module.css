@@ -1,0 +1,190 @@
+.genPageCont{
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 81px;
+    background-color: rgb(234, 231, 231);
+    align-items: center;
+}
+
+.languaCont{
+    margin: 21px 0;
+    width: fit-content;
+    padding: 3px 9px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: var(--general-transition);
+}
+
+.languaCont:hover{
+    box-shadow: var(--aHighlightBoxShadow);
+}
+
+.bookingPageIntro{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.YacumaLogo{
+    padding-right: 15px;
+}
+
+.generalTitle{
+    font-size: 2em;
+    width: 270px;
+    padding: 0 15px;
+}
+
+.summDialogBTN{
+    display: none;
+}
+
+.inputAndsumContainer{
+    display: flex;
+    flex-direction: row;
+    min-height: 50px;
+    width: 100%;
+    margin: 21px 0;   
+    justify-content: center;
+}
+
+.inputContainer{
+    min-height: 50px;
+    width: 640px;
+    background-color: white;
+    box-shadow: var(--generalBoxShadow);
+}
+.summaryContainer{
+    min-height: 50px;
+    width: 380px;
+    background-color: white;
+    box-shadow: var(--generalBoxShadow);
+    margin-left: 2%;
+}
+
+.formSectionTitle{
+    padding: 6px 12px;
+    border-bottom: solid 1px grey;
+    font-size: 1.2em;
+}
+
+.formSectionInput{
+    margin: 9px 0;
+    padding: 9px 21px;
+}
+
+.anInputCont{
+    margin: 9px 21px;
+    display: flex;
+    flex-direction: column;
+}
+
+.anInput{
+    border: unset;
+    border-bottom: solid 2px black;
+    border-left: solid 2px black;
+    padding: 3px 6px;
+    height: fit-content;
+    width: 190px;
+    height: 30px;
+}
+
+.userInputLabels{
+    font-size: 0.8em;
+    margin: 6px 0;
+}
+
+.closeDialBTN{
+    padding: 9px 12px;
+    font-weight: bolder;
+}
+
+.userdataInputs{
+    min-height: 100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.formBtnsCont{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.formBTN{
+    border-radius: 5px;
+    width: 180px;
+    background-color: var(--yacumaThemeColor);
+    color: white;
+    text-align: center;
+    padding: 6px 9px;
+    margin: 21px;
+    box-shadow: var(--generalBoxShadow);
+    cursor: pointer;
+    transition: var(--general-transition);
+    display: flex;
+    justify-content: center;
+}
+.formBTN:hover{
+    box-shadow: var(--aHighlightBoxShadow);
+}
+
+@media screen and (max-width:1080px){
+    .genPageCont{
+        padding: 0 33px;
+    }
+    .inputContainer{
+        width: 58%;
+    }
+    .summaryContainer{
+        width: 38%;
+    }
+}
+
+@media screen and (max-width:700px){
+    .genPageCont{
+        padding: 0 24px;
+    }
+    .bookingPageIntro{
+        flex-direction: column;
+    }
+    .YacumaLogo{
+        border: unset;
+        padding: unset;
+    }
+
+    .summDialogBTN{
+        display: unset;
+        color: white;
+        border-radius: 5px;
+        background-color: var(--yacumaThemeColor);
+        padding: 6px 9px;
+        box-shadow: var(--generalBoxShadow);
+        cursor: pointer;
+        transition: var(--general-transition);
+    }
+    .summDialogBTN:hover{
+        box-shadow: var(--aHighlightBoxShadow);
+    }
+
+    .inputContainer{
+        width: 90%;
+    }
+    .summaryContainer{
+        display: none;
+    }
+    .generalTitle{
+        font-size: 1.5em;
+        padding: 12px 0;
+        text-align: center;
+    }
+
+
+}

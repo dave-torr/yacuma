@@ -1,0 +1,48 @@
+{
+    "sharedDep":{
+        "yakuPP": 180,
+        "yakuSS": 65,
+        "bromeliaPP": 240,
+        "bromeliaSS": 90,
+        "killaPP": 300,
+        "killaSS": 130
+    },
+    "privateDepSS": {
+        "yakuSS": 65,
+        "bromeliaSS": 90,
+        "killaSS": 130
+    },
+    "privateYaku":{
+        "pax2": 265,
+        "pax3": 220,
+        "pax4": 215,
+        "pax5": 210,
+        "pax6": 205,
+        "pax7": 200,
+        "pax8": 195,
+        "pax9": 190,
+        "plus10": 185
+    },
+    "privateBromelia":{
+        "pax2": 360,
+        "pax3": 310,
+        "pax4": 300,
+        "pax5": 290,
+        "pax6": 285,
+        "pax7": 280,
+        "pax8": 275,
+        "pax9": 270,
+        "plus10": 265
+    },
+    "privateKilla":{
+        "pax2": 460,
+        "pax3": 400,
+        "pax4": 385,
+        "pax5": 370,
+        "pax6": 365,
+        "pax7": 365,
+        "pax8": 360,
+        "pax9": 355,
+        "plus10": 350
+    }
+}

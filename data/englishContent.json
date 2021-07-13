@@ -1,0 +1,72 @@
+[
+    {
+        "generalTitle": "Online Booking system",
+        "bookingSummary": {
+            "summaryTitle": "Trip Selection Summary",
+            "itinTitle": "Selected Itinerary",
+            "departureTitle": "Selected Departure Date",
+            "paxNumb": "Total Client Number",
+            "pax": "Passenger(s)",
+            "singleSup": "Single Supplements",
+            "food": "Food Restrictions",
+            "medical": "Medical Conditions",
+            "transport": "Transportation Required"
+        },
+        "bookerSummary":{
+            "bookerSumTitle": "Booking Client information",
+            "name": "Full Name",
+            "dob": "Date of Birth",
+            "number": "Phone Number",
+            "passport": "Passport or ID",
+            "email": "Email",
+            "nationality": "Nationality"
+        },
+        "ItineraryOptions": [
+            "Yaku | 3 Days, 2 Nights", 
+            "Bromelia | 4 Days, 3 Nights", 
+            "Killa | 5 Days, 4 Nights" ],
+        "userInputs":{
+            "itinSelectTitle": "Please Select Your Itinerary",
+            "tourTypeSelectTitle": "Please Select Your Tour Type",
+            "dateSelectTitle": "Please Select Your Departure Date",
+            "clientDataTitle":"Please Enter Booking Passenger Information",
+            "additionalDataTitle": "Additional Passenger Information",
+            "finalPaxDetialTitle": "Final Booking Details",
+            "nameInput":"Full Name",
+            "nationInput":"Nationality",
+            "emailInput":"Email",
+            "passportInput":"Passport or I.D.",
+            "phoneNumbInput":"Phone Number",
+            "dobInput":"Date Of Birth",
+            "singleTravTitle": "I Am",
+            "singleTravOpt": "Travelling By Myself",
+            "singleTravComment": ["Please Note", "Solo Travel has an additional Single Supplement Surcharge for a private room"],
+            "groupTravOpt": "With Other People",
+            "groupTourInput":["there are", "other people in my group.", "For groups over 10 passengers, please"],
+            "foodRestrictionsTitle":"Food Restrictions",
+            "foodResContent": "If you (or other members of your group) have any dietary restrictions, food alergies or special dietary needs, please list them here: \n (If none, please leave empty)",
+            "foodResInputPH": "food restrictions",
+            "medRestrictionsTitle":"Medical Conditions",
+            "medResContent": "Please list all important or relevant medical conditions that our staff should be aware about: \n (If none, please leave empty)",
+            "medResInputPH": "medical conditions",
+            "transportTitle":"Transportation",
+            "transportContent": "Transportation is available at an additional cost. Would you like for our team to get in contact about private or shared transportation options to Yacuma EcoLodge?",
+            "transportInputOptions": ["Yes, please contact me for transportation options", "No, I/we will arrive to Santa Rosa, Napo by ourselves." ]
+        },
+        "bookingElements":{
+            "pricePerPax": "price per person",
+            "reservationSumTitle": "Your Reservation",
+            "TourTotal": "Tour Total",
+            "conditionsTitle": "Booking Conditions",
+            "conditions": ["I confirm that I am over 18 years of age, that all the information provided is correct, and that I am allowed to block this travel experience for the other travelling passengers", "I confirm that I have read and agree with Yacuma EcoLodge's", "Payment and Cancellation Policies [download here]"],
+            "conditionsSubTitle": "Confirm your stay at this moment by paying tour total for all travelling passengers! Most Credit Cards accepted!",
+            "paymentBoxTitle": "Total Tour Payment",
+            "paymentDetails": "Payment Details"
+        },
+        "privateTourOption": "Private Departure",
+        "shatedTourOption": "Shared Departure Tour",
+        "requiredIndicatior": "Required",
+        "contact": "contact us",
+        "bookingStemBTNS": [ "Return a step", "Next step", "Accept Conditions", "Book Now!" ]
+    }
+]

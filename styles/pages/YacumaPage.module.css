@@ -1,0 +1,433 @@
+
+.YacumaPageCont{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    min-height: 100vh;
+    background-color: whitesmoke;
+}
+
+.aYacumaSection{
+    width: 100%;
+    padding: 33px 81px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aSectionRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 21px 0;
+}
+
+.gMapsBTN{
+    border-bottom: solid 1px black;
+    padding: 12px 20%;
+    transition: var(--general-transition);
+}
+
+.gMapsBTN:hover{
+    background-color: white;
+    box-shadow: var(--generalBoxShadow);
+}
+
+
+.aSectionTitle{
+    cursor: pointer;
+    width: 100%;
+    border-bottom: dotted 3px green;
+    padding-bottom: 9px;
+    transition: var(--general-transition);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 9px;
+}
+
+.aSectionTitleCLOSED{
+    padding-right: 9px;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: solid 1px grey;
+    padding-bottom: 9px;
+    transition: var(--general-transition);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.aboutLocationText{
+    width: 50%;
+    text-align: justify;
+    padding: 0 21px;
+}
+
+.dataRow{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 33px;
+    font-size: 1.2em;
+}
+
+.aMapContainer{
+    padding: 12px 12px 6px;
+    background-color: white;
+    border: solid 1px rgb(5, 84, 17);
+    border-radius: 5px;
+    box-shadow: var(--aHighlightBoxShadow);
+    margin-left: 12px;
+}
+
+.birdImgCont{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 33px;
+}
+
+
+.birdImgKing{
+    width: 310px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 6px 6px 3px;
+    cursor: pointer;
+    box-shadow: var(--generalBoxShadow);
+    background-color: white;
+    transform: translate(33px, -15px);
+}
+
+.birdImgTou{
+    z-index: 1;
+    width: 240px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 6px 6px 3px;
+    cursor: pointer;
+    box-shadow: var(--generalBoxShadow);
+    background-color: white;
+}
+
+.birdImgHua{
+    z-index: 2;
+    width: 340px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 6px 6px 3px;
+    cursor: pointer;
+    box-shadow: var(--generalBoxShadow);
+    background-color: white;
+    transform: translate(-33px, 25px);
+}
+
+.birdTextContainer{
+    width: 600px;
+    min-height: 40px;
+    text-align: center;
+    border-bottom: solid 1px black;
+}
+
+.birdTextContainer a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    cursor: pointer;
+    transition: var(--general-transition);
+}
+.birdTextContainer a:hover{
+    background-color: white;
+    box-shadow: var(--generalBoxShadow);
+}
+
+.socialFootCont{
+    width: 100%;
+    height: 8vh;
+    position: sticky;
+    top: calc(100vh - 8vh);
+    z-index: 9;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 0.6px grey;
+    border-bottom: solid 0.6px rgba(128, 128, 128, 0.276);
+    padding: 21px;
+    margin-top: 33px;
+}
+
+.aHomeLikeCont:hover{
+    color: coral;
+    cursor: pointer;
+}
+
+.aHomeLikeIcon{
+    padding: 0 6px;
+}
+
+.socialBtnsCont{
+    display: flex;
+}
+
+.socialBtnsCont a{
+    margin: 5px 15px;
+    transition: var(--general-transition);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.socialBtnsCont a:hover{
+    color: chocolate;
+    transform: translateY(-5px);
+}
+
+.yacumaFooter{
+    min-height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.yacumaLogo{
+    padding: 15px;
+    margin: 0 21px;
+    width: 280px;
+}
+
+.creditDisp{
+    font-size: 0.8em;
+    /* text-transform: uppercase; */
+    text-align: center;
+    padding: 6px;
+    margin: 33px;
+}
+
+
+.koriotoSpinners{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.Appicon {
+    position: absolute;
+    height: 40vmin;
+    bottom: 10vmin;
+}
+
+.Appicon2{
+    position: absolute;
+    height: 65vmin;
+    bottom: 0;
+}
+
+.appfontface{
+    position: absolute;
+    width:80vmin;
+    bottom: 0;
+  }
+
+@media (prefers-reduced-motion: no-preference) {
+  .Appicon {
+    animation: App-icon-spin infinite 18s linear;
+    animation-direction: reverse; /* or: normal */
+  }
+  .Appicon2 {
+    animation: App-icon-spin infinite 70s linear;
+    animation-direction: normal; /* or: normal */
+  }
+}
+@keyframes App-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.koriotoIntro{
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 33px 0;
+    text-align: center;
+}
+
+.koriotoLineDeco{
+    width: 66px;
+    height: 2px;
+    border-radius: 5px;
+    background-color: black;
+    margin: 15px;
+
+}
+
+.yacumaXKoriotoTxt::before{
+    content: "PROUDLY PRESENTING";
+    display: block;
+    font-size: 0.7em;
+    font-weight: 200;
+}
+.yacumaXKoriotoTxt::after{
+    content: "listen on:";
+    display: block;
+    font-size: 0.7em;
+    font-weight: 200;
+}
+
+.yacumaXKoriotoTxt{
+    text-align: center;
+    font-size: 2.3em;
+}
+
+.koriotoMediaCont{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mediaSwitcherCont{
+    display: flex;
+}
+
+.aMediaIcon{
+    margin: 12px;
+    border-radius: 5px;
+    padding: 6px;
+    transition: var(--general-transition);
+}
+
+.aMediaIcon:hover{
+    box-shadow: var(--aHighlightBoxShadow);
+    background-color: white;
+}
+.smallYoutubePlayer{
+    display: none;
+}
+
+@media screen and (max-width:1080px){
+    .gMapsBTN{
+        padding: 12px 21px;
+    }
+
+    .aYacumaSection{
+        padding: 18px 33px;
+    }
+    .aSectionRow{
+        flex-direction: column;
+
+    }
+
+    .aboutLocationText{
+        width: 80%;
+    }
+    .birdTextContainer{
+        width: 80%;
+    }
+    .birdImgCont{
+        padding: 33px 0;
+    }
+    .Appicon {
+        height: 30vmin;
+    }
+
+    .Appicon2{
+        height: 55vmin;
+    }
+
+    .appfontface{
+        width:80vmin;
+    }    
+}
+
+@media screen and (max-width:700px){
+    .aSectionTitle{
+        padding-left: 12px;
+        font-size: 1.5em;
+        margin-top: 12px;
+    }
+    .aSectionTitleCLOSED{
+        padding-left: 12px;
+        font-size: 1.5em;
+        margin-top: 12px;
+    }
+    .aYacumaSection{
+        padding: 0;
+    }
+    .aboutLocationText{
+        width: 93%;
+        padding: 0 9px;
+        font-size: 0.9em;
+    }
+
+    .dataRow{
+        padding: 12px 0;
+    }
+
+    .birdImgCont{
+        flex-direction: column;
+        height: 650px;
+        padding: 0;
+    }
+    .birdImgKing{
+        transform: unset;
+        transform: translate(0px, 50px);
+        width: 280px;
+    }
+
+    .birdImgTou{
+        transform: unset;
+        transform: translateY(25px);
+    }
+
+    .birdImgHua{
+        transform: unset;
+        transform: translate(10px, -30px);
+        width: 240px;
+    }
+
+    .birdTextContainer{
+        width: 93%;
+        font-size: 0.8em;
+        margin-bottom: 15px;
+    }
+
+    .yacumaFooter{
+        flex-direction: column-reverse;
+    }
+
+    .creditDisp{
+        margin: 0 33px;
+        margin-bottom: 15px;
+    }
+
+    .aMapContainer{
+        display: none;
+    }
+    .socialFootCont{
+        justify-content: center;
+    }
+    .socialBtnsCont{
+        display: none;
+    }
+    .aHomeLikeCont:hover{
+        color: black;
+        cursor: pointer;
+    }
+    .largeYoutubePlayer{
+        display: none;
+
+    }
+    .smallYoutubePlayer{
+        display: unset;
+    }    
+}

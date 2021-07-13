@@ -8,8 +8,24 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@sendgrid/mail": "^7.4.5",
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^3.2.0",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.6.5",
     "next": "11.0.1",
+    "next-connect": "^0.10.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^0.5.6",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
   }
 }
