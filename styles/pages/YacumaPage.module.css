@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .splashText{
@@ -216,6 +217,20 @@
     color: chocolate;
     transform: translateY(-5px);
 }
+.socialBtnsCont2{
+    display: none;
+}
+
+.socialBtnsCont2 a{
+    margin: 5px 15px;
+    transition: var(--general-transition);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.socialBtnsCont2 a:hover{
+    color: chocolate;
+    transform: translateY(-5px);
+}
 
 .yacumaFooter{
     min-height: 120px;
@@ -240,7 +255,7 @@
 }
 
 .koriotoSection{
-    width: 100vw;
+    width: 98vw;
 }
 
 .koriotoSpinners{
@@ -333,6 +348,12 @@
     align-items: center;
 }
 
+.KoriotoIMG{
+    width: 99%;
+    justify-content: center;
+    display: flex;
+}
+
 .mediaSwitcherCont{
     display: flex;
 }
@@ -350,6 +371,45 @@
 }
 .smallYoutubePlayer{
     display: none;
+}
+
+.userMenu{
+    margin-left: 15px;
+    padding-left: 21px;
+    border-left: solid 1px black;
+    cursor: pointer;
+}
+
+.userMenuCont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 96vh;
+}
+
+.menuOptionCont{
+    display: flex;
+    flex-direction: column;
+}
+
+.aUserMenuOption{
+    font-size: 1.5em;
+    text-align: center;
+    margin: 6px;
+    cursor: pointer;
+}
+.aUserMenuOption:hover{
+    color: chocolate;
+}
+
+.closeMenuBTN{
+    width: 100%;
+    text-align: end;
+    padding: 15px 28px;
+    cursor: pointer;
+    font-size: 1.5em;
 }
 
 @media screen and (max-width:1080px){
@@ -456,6 +516,9 @@
     }
     .socialBtnsCont{
         display: none;
+    }
+    .socialBtnsCont2{
+        display: flex;
     }
     .aHomeLikeCont:hover{
         color: black;

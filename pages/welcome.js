@@ -13,6 +13,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
+import ListIcon from '@material-ui/icons/List';
 
 import { Dialog } from "@material-ui/core";
 
@@ -59,9 +60,6 @@ const dialogImageFunc=()=>{
         )
     }
 }
-
-
-
 
 ////////////
 // Display
@@ -204,7 +202,7 @@ const birdIMGSection=()=>{
             </div>
             </>:<>
                 <h1 className={styles.aSectionTitleCLOSED} onClick={()=>{
-                    if(mapVisController){
+                    if(birdVisContr){
                         setBirdVisCont(false)
                     } else { setBirdVisCont(true) }
                 }}> Birdwatching in Yacuma  <Brightness3Icon /> </h1>
@@ -256,26 +254,22 @@ const koriotoSection=()=>{
                     }}> <Image src={"/assets/korioto/youtube.png"} width={60} height={60} alt="YouTube icon"/> </div>
                 </div>
 
-
                 {mediaDisplayer==="youTube"? <>
-                <div className={styles.largeYoutubePlayer}>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLFSQuJvkl7dSNx-pmsf8g8qpI_U9yJcWV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div className={styles.smallYoutubePlayer}>
-                    <iframe width="300" height="180" src="https://www.youtube.com/embed/videoseries?list=PLFSQuJvkl7dSNx-pmsf8g8qpI_U9yJcWV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                </> 
-                : mediaDisplayer==="spotify"&&<>
+                    <div className={styles.largeYoutubePlayer}>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLFSQuJvkl7dSNx-pmsf8g8qpI_U9yJcWV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div className={styles.smallYoutubePlayer}>
+                        <iframe width="300" height="180" src="https://www.youtube.com/embed/videoseries?list=PLFSQuJvkl7dSNx-pmsf8g8qpI_U9yJcWV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </> : mediaDisplayer==="spotify"&&<>
                     <iframe src="https://open.spotify.com/embed/album/31TQOxCHjX7LMtKhRDYq61" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 </>}
             </div>
-            <div>
 
-            </div>
         </div>
         </>:<> 
         <h1 className={styles.aSectionTitleCLOSED} onClick={()=>{
-            if(mapVisController){
+            if(koriotoVisContr){
                 setKoriotoVisCont(false)
             } else { setKoriotoVisCont(true) }
         }}> Yacuma x Korioto  <Brightness3Icon /> </h1>
@@ -289,7 +283,61 @@ const koriotoSection=()=>{
 
 ////////////////////////////////
 // AUTH elements
-const packingList=()=>{ }
+const [userMenuTrigger, setUserMenuTrig]=useState(false)
+const userMenu=()=>{
+    return(
+        <>
+            <Dialog fullScreen open={userMenuTrigger} onClose={()=>setUserMenuTrig(false)}>
+                <div className={styles.userMenuCont}>  
+                    <div className={styles.closeMenuBTN} onClick={()=>setUserMenuTrig(false)}> close | X </div>
+
+                    <div className={styles.menuOptionCont}> 
+                        {/* <div className={styles.aUserMenuOption}> edit my data </div> */}
+                        <div className={styles.aUserMenuOption}> <a href="mailto:info@yacuma.travel?subject=Yacuma Ecolodge Information"> contact the yacuma team </a> </div>
+                        <br></br>
+                        <br></br>
+                        <div className={styles.aUserMenuOption} 
+                        onClick={async()=>{
+                            await fetch('/api/auth/auth', {
+                            method: 'DELETE',
+                            });
+                        mutate(null);
+                        }}> log out </div>
+                    </div>
+
+                    <div className={styles.menuLogoDiv}>
+                        <Image src={"/assets/icons/fontFacePlusGrn.png"} width={280} height={75} alt="Yacuma Logo Green"/>
+                    </div>
+                </div>
+            </Dialog>
+        </>
+    )
+}
+const [packingListTrigg, setPackingListTrig]=useState(true)
+const packingList=()=>{ 
+    return(
+        <>
+            <div className={styles.aYacumaSection}> 
+            {packingListTrigg? <>
+                <h1 className={styles.aSectionTitle} onClick={()=>{
+                    if(packingListTrigg){
+                        setPackingListTrig(false)
+                    } else { setPackingListTrig(true) }
+                }}> Packing List <Brightness5Icon /> </h1>
+                <div>
+                    
+                </div>
+            </>:<> 
+                <h1 className={styles.aSectionTitleCLOSED} onClick={()=>{
+                    if(packingListTrigg){
+                        setPackingListTrig(false)
+                    } else { setPackingListTrig(true) }
+                }}> Packing List  <Brightness3Icon /> </h1>
+            </>}
+            </div>
+        </>
+    )
+}
 const ourItinerary=()=>{ }
 const yourData=()=>{ }
 
@@ -318,22 +366,28 @@ const socialFooterBar=()=>{
                             <div className={styles.likeIconText}> Yacuma EcoLodge </div>
                         </div>
                 </div>
-                <div className={styles.socialBtnsCont}>
-                    <a target="_blank" rel="noopener" href="https://www.instagram.com/yacumaecolodge/">
-                        <InstagramIcon fontSize="inherit" />
-                    </a>
 
-                    <a target="_blank" rel="noopener" href="https://www.facebook.com/Yacumaecolodge/">
-                        <FacebookIcon />
-                    </a>
+                <div style={{"display": "flex", "alignItems": "center"}}> 
+                    <div className={styles.socialBtnsCont}>
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/yacumaecolodge/">
+                            <InstagramIcon fontSize="inherit" />
+                        </a>
 
-                    <a target="_blank" rel="noopener" href="https://www.yacuma.travel/en/home/">
-                        <HomeIcon />
-                    </a>
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/Yacumaecolodge/">
+                            <FacebookIcon />
+                        </a>
 
-                    <a target="_blank" rel="noopener" href="https://goo.gl/maps/CziaPHy63CKSTRMcA">
-                        <MapIcon />
-                    </a>
+                        <a target="_blank" rel="noopener" href="https://www.yacuma.travel/en/home/">
+                            <HomeIcon />
+                        </a>
+
+                        <a target="_blank" rel="noopener" href="https://goo.gl/maps/CziaPHy63CKSTRMcA">
+                            <MapIcon />
+                        </a>
+                    </div>
+                {user&&<>
+                    <div className={styles.userMenu} onClick={()=>setUserMenuTrig(true)}> <ListIcon/> </div>
+                </>}
                 </div>
             </div>
         </>
@@ -353,6 +407,23 @@ const YacumaFooter=()=>{
             <div className={styles.yacumaFooter}>
                 <div className={styles.creditDisp} >
                     {eachFooterCredit}
+                </div>
+                <div className={styles.socialBtnsCont2}>
+                    <a target="_blank" rel="noopener" href="https://www.instagram.com/yacumaecolodge/">
+                        <InstagramIcon fontSize="inherit" />
+                    </a>
+
+                    <a target="_blank" rel="noopener" href="https://www.facebook.com/Yacumaecolodge/">
+                        <FacebookIcon />
+                    </a>
+
+                    <a target="_blank" rel="noopener" href="https://www.yacuma.travel/en/home/">
+                        <HomeIcon />
+                    </a>
+
+                    <a target="_blank" rel="noopener" href="https://goo.gl/maps/CziaPHy63CKSTRMcA">
+                        <MapIcon />
+                    </a>
                 </div>
                 <div className={styles.yacumaLogo}>
                     <Image 
@@ -375,6 +446,7 @@ const YacumaFooter=()=>{
                 {/* {aboutYacuma()} */}
                 {/* {itineraries()} */}
                 {/* {selectedPlaylists()} */}
+                {packingList()}
                 {locationAndMap()}
                 {birdIMGSection()}
                 {koriotoSection()}
@@ -384,6 +456,7 @@ const YacumaFooter=()=>{
             <br></br>
             </div>
             {YacumaFooter()}
+            {userMenu()}
             <Dialog open={dialogController} onClose={()=>{
                 setDialogCont(false)
                 setImgDialogCont(null)
