@@ -35,6 +35,7 @@ console.log(hashedPassword)
       password: hashedPassword, 
       contactData: {},
       personalPreferences: {},
+      emergencyContact: {},
       clientType: "b2c",
       signUpStream: "website",
        })

@@ -2,9 +2,9 @@ import React from "react"
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
-import styles from "./../../styles/pages/onboarding.module.css"
+import styles from "./../styles/pages/onboarding.module.css"
 
-import {useUser} from "./../../utils/auth/userHook"
+import {useUser} from "../utils/auth/userHook"
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';

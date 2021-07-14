@@ -2,10 +2,10 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import Image from 'next/image'
 
-import englishContent from "./../../data/englishContent.json"
-import spanishContent from "./../../data/spanishContent.json"
-import yacumaDepDates from "./../../data/yacumaDepDates.json"
-import prices from "./../../data/prices.json"
+import englishContent from "../data/englishContent.json"
+import spanishContent from "../data/spanishContent.json"
+import yacumaDepDates from "../data/yacumaDepDates.json"
+import prices from "../data/prices.json"
 
 import Dialog from '@material-ui/core/Dialog';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';

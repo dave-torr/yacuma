@@ -18,9 +18,9 @@ import { Dialog } from "@material-ui/core";
 
 
 
-import styles from "../../styles/pages/YacumaPage.module.css"
+import styles from "../styles/pages/YacumaPage.module.css"
 
-export default function YacumaPage(props){
+export default function WelcomeGuestPage(props){
 
 const [mapVisController, setMapVis] = useState(false)
 const [birdVisContr, setBirdVisCont] =useState(false)
@@ -182,6 +182,7 @@ const koriotoSection=()=>{
     let iconTransparency = "/assets/korioto/iconTransparency20pcBlk.png"
     let fontWhite = "/assets/korioto/fontFaceWht.png"
     return(<>
+    <div className={styles.aYacumaSection}>
     {koriotoVisContr? <>
         <h1 className={styles.aSectionTitle} onClick={()=>{
             if(koriotoVisContr){
@@ -242,6 +243,7 @@ const koriotoSection=()=>{
             } else { setKoriotoVisCont(true) }
         }}> Yacuma x Korioto  <Brightness3Icon /> </h1>
         </>} 
+    </div>
     </>) 
 }
 
