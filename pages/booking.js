@@ -10,7 +10,7 @@ import prices from "../data/prices.json"
 import Dialog from '@material-ui/core/Dialog';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
-import styles from "../../styles/pages/yacumaBooking.module.css"
+import styles from "./../styles/pages/yacumaBooking.module.css"
 
 export default function YacumaBooking(props){
     const [language, setLanguage]=useState(englishContent[0])
