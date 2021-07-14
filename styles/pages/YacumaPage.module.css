@@ -8,6 +8,37 @@
     background-color: whitesmoke;
 }
 
+.welcomeSplash{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splashText{
+    position: relative;
+    top: 15vh;
+    padding: 12px;
+}
+.planetIconCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+.planetIcon{
+    width: 70px;
+}
+
+@keyframes PlanetSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .aYacumaSection{
     width: 100%;
     padding: 33px 81px;
@@ -244,6 +275,10 @@
   .Appicon2 {
     animation: App-icon-spin infinite 70s linear;
     animation-direction: normal; /* or: normal */
+  }
+  .planetIcon{
+    animation: PlanetSpin 15s infinite;
+
   }
 }
 @keyframes App-icon-spin {

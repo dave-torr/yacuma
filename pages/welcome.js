@@ -16,17 +16,25 @@ import Brightness5Icon from '@material-ui/icons/Brightness5';
 
 import { Dialog } from "@material-ui/core";
 
+import {useUser} from "../utils/auth/userHook"
 
 
 import styles from "../styles/pages/YacumaPage.module.css"
 
-export default function WelcomeGuestPage(props){
 
-const [mapVisController, setMapVis] = useState(false)
-const [birdVisContr, setBirdVisCont] =useState(false)
-const [koriotoVisContr, setKoriotoVisCont] =useState(false)
-const [dialogController, setDialogCont] = useState(false)
-const [imageDialogContent, setImgDialogCont] = useState(null)
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export default function WelcomeGuestPage(props){
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+const [user, { mutate }] =useUser();
+
+    const [mapVisController, setMapVis] = useState(false)
+    const [birdVisContr, setBirdVisCont] =useState(false)
+    const [koriotoVisContr, setKoriotoVisCont] =useState(true)
+    const [dialogController, setDialogCont] = useState(false)
+    const [imageDialogContent, setImgDialogCont] = useState(null)
 
 ///////////
 // Utils
@@ -57,13 +65,42 @@ const dialogImageFunc=()=>{
 
 ////////////
 // Display
+const WelcomeAndUserIntro=()=>{ 
+    return(
+        <> 
+            <div className={styles.welcomeSplash}>
+                <Image
+                    src={"/assets/yacuma/welcomeSplash.png"}
+                    layout="fill" objectFit="cover"
+                    alt="Warax Concerts Image - Saxophone player with Band"
+                />
+            <div className={styles.splashText}>
+                {user&&<>
+                    Hi {user.name}! 
+                    <br></br>
+                    <strong> &nbsp; Welcome to: </strong>
+                    <br></br>
+                    <br></br>
+                </>}
+                    <Image
+                        src={"/assets/icons/fontFaceBlk.png"}
+                        width={400}
+                        height={70}
+                        alt="Yacuma FontFace Black"
+
+                    />
+                    <div className={styles.planetIconCont}> 
+                        <img  src={"/assets/icons/creditPlanet.svg"} className={styles.planetIcon}/>
+                    </div>
+                </div>
+            </div> 
+        </>
+    ) 
+}
 
 
 
 
-
-
-const WelcomeAndUserIntro=()=>{ return(<> <div> Each user's name, add data to complete profile, intro to mini app </div> </>) }
 const aboutYacuma=()=>{ return(<> <div> short history, photos, and 'about cabins' </div> </>) }
 const itineraries=()=>{ return(<> <div> Itineraries with day by day </div> </>) }
 const selectedPlaylists=()=>{ return(<> <div> Recommended Travelling Playlists, trip playlist,  </div> </>) }
@@ -333,11 +370,11 @@ const YacumaFooter=()=>{
     return (
         <>
             <div className={styles.YacumaPageCont}>
-                {/* {WelcomeAndUserIntro()} */}
+                {WelcomeAndUserIntro()}
                 {socialFooterBar()}
-                {aboutYacuma()}
-                {itineraries()}
-                {selectedPlaylists()}
+                {/* {aboutYacuma()} */}
+                {/* {itineraries()} */}
+                {/* {selectedPlaylists()} */}
                 {locationAndMap()}
                 {birdIMGSection()}
                 {koriotoSection()}
