@@ -33,9 +33,8 @@ console.log(hashedPassword)
       name,
       email,
       password: hashedPassword, 
-      contactData: {},
-      personalPreferences: {},
-      emergencyContact: {},
+      contactData: null,
+      personalPreferences: null,
       clientType: "b2c",
       signUpStream: "website",
        })

@@ -103,7 +103,7 @@
 .anInput{
     border: solid 2px black;
     border-radius: 3px;
-    width: 180px;
+    width: 210px;
     padding: 6px;
 }
 
@@ -149,7 +149,16 @@
     text-align: start;
 }
 
+.movieDataInput{
+    display: flex;
+    align-items: center;
+}
+
 @media screen and (max-width:750px){
+    .formTwoLabel{
+        width: 210px;
+        text-align: start;
+    }
     .introText{
         font-size: 2em;
     }
@@ -163,9 +172,13 @@
     .formOne{
         width: 90%;
     }
+    .formTwoBox{
+        width: 90%;
+    }
 
     .aFormDataInput{
         flex-direction: column;
+        margin: 9px;
     }
 
     .formLabel{

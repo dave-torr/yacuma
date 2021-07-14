@@ -1,5 +1,6 @@
 import React from "react"
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
 import styles from "./../styles/pages/onboarding.module.css"
@@ -8,6 +9,8 @@ import {useUser} from "../utils/auth/userHook"
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import { CircularProgress } from '@material-ui/core';
 
 
@@ -21,14 +24,21 @@ export default function OnboardingPage(props){
 
 // user sign up with last name and email as parameters to log in
 
-
+const router = useRouter()
 const [user, { mutate }] =useUser();
 const [errorMsg, setErrorMsg] = useState('');
 
 useEffect(()=>{
     if(user){
         setRegisterStep(1)
-    }
+        let onboardingAnchor = document.getElementById("anchorOne")
+            onboardingAnchor.scrollIntoView({behavior: "smooth"})
+        if (user.contactData){
+            setRegisterStep(2)
+            let onboardingAnchor = document.getElementById("anchorOne")
+                onboardingAnchor.scrollIntoView({behavior: "smooth"})
+        }
+    } 
 },[user])
 
 const [registerStep, setRegisterStep]= useState(0)
@@ -149,10 +159,11 @@ const formTwo=()=>{
         <>
             <div className={styles.formTwoCont}>
                 <div className={styles.userIntroTitle}> Hi {user.name}! </div>
-                <div className={styles.dataTableTitle}> We need just a few more details: </div>
+                <div className={styles.dataTableTitle}> Almost there! </div>
                 <div> <ListIcon fontSize="large" /> </div>
                 <form className={styles.formTwoBox} onSubmit={async(e)=>{
                     e.preventDefault();
+                    setFormTwoSub(true)
                     let stringifiedClientData=JSON.stringify(personalDataMod)
                     const res2 = await fetch("/api/onboarding/personalData",{
                         method: "put",
@@ -163,6 +174,7 @@ const formTwo=()=>{
                         console.log("userUpdated updated")
                         setRegisterStep(2)
                         }
+
                 }}> 
                     <h2>Personal Data </h2> 
                     <div className={styles.aFormDataInput}>  
@@ -170,6 +182,7 @@ const formTwo=()=>{
                         <input className={styles.anInput} required type="date" id="Date of Birth" placeholder="Date of Birth" onChange={(e)=>{
                             setPersonalDataMod({
                                 ...personalDataMod,
+                                "_id":user._id,
                                 "dateOfBirth": e.target.value
                             })
                         }} />
@@ -196,17 +209,17 @@ const formTwo=()=>{
                     <h3> Emergency Contact Info: </h3>
                     <div> (optional) </div>
                     <div className={styles.aFormDataInput}>  
-                        <label htmlFor="Emergency Contact" className={styles.formTwoLabel}> Emergency Contact: </label>
-                        <input className={styles.anInput} required type="number" id="Emergency Contact" placeholder="Name" onChange={(e)=>{
+                        <label htmlFor="emergencyContact" className={styles.formTwoLabel}> Contact Name: </label>
+                        <input className={styles.anInput} type="text" id="emergencyContact" placeholder="Name" onChange={(e)=>{
                             setPersonalDataMod({
                                 ...personalDataMod,
-                                "phoneNumber": e.target.value
+                                "emergencyContName": e.target.value
                             })
                         }} />
                     </div>
                     <div className={styles.aFormDataInput}>  
-                        <label htmlFor="Emerg Phone Number" className={styles.formTwoLabel}> Emergency Phone: </label>
-                        <input className={styles.anInput} type="number" id="Emerg Phone Number" placeholder="Emergency Phone Number" onChange={(e)=>{
+                        <label htmlFor="emergPhoneNumber" className={styles.formTwoLabel}> Phone: </label>
+                        <input className={styles.anInput} type="number" id="emergPhoneNumber" placeholder="Emergency Phone Number" onChange={(e)=>{
                             setPersonalDataMod({
                                 ...personalDataMod,
                                 "emergencyPhoneNumber": e.target.value
@@ -214,12 +227,107 @@ const formTwo=()=>{
                         }} />
                     </div>
                     {formTwoSubmition? <>
+                        <br></br>
+                        <br></br>
                         <CircularProgress />
+                        <br></br>
+                        <br></br>
                     </>:<>
                         <input type="submit" value="Submit" className={styles.submitBTN} />
                     </>}
                 </form>
             </div>
+        </>
+    )
+}
+
+const [preferenceDataMod, setPreferencedata]=useState({
+    "preferences":"None, all good"
+})
+const [formThreeSubmition, setFormThree]=useState(false)
+const formThree=()=>{
+    return(
+        <>
+        <div className={styles.formTwoCont}> 
+            <h3> We need just a few more details: </h3>
+            (optional too!)
+            <form onSubmit={async(e)=>{
+                e.preventDefault();
+                setFormThree(true)
+                let stringifiedPreferneces= JSON.stringify(preferenceDataMod);
+                const res3 = await fetch("/api/onboarding/personalData",{
+                    method: "post",
+                    body: stringifiedPreferneces
+                })
+                const editedUser2 = await res3.json()
+                if(editedUser2.lastErrorObject.updatedExisting){
+                    console.log("userUpdated updated")
+                    window.alert("Fantastic! Please continue to your dashboard!")
+                    router.push('/welcome')
+                    }                
+            }}>
+            <div className={styles.aFormDataInput}>  
+                <label htmlFor="foodRestictions" className={styles.formTwoLabel}> Food Restictions or requirements:</label>
+                <input className={styles.anInput} type="text" id="foodRestictions" placeholder="Veggie, Pescatarian, Vegan or? " onChange={(e)=>{
+                    setPreferencedata({
+                        ...preferenceDataMod,
+                        "food": e.target.value
+                    })
+                }} />
+            </div>
+            <div className={styles.aFormDataInput}>  
+                <label htmlFor="allergies" className={styles.formTwoLabel}> Alergies or Medical Conditions?</label>
+                <input className={styles.anInput} type="text" id="allergies" placeholder="Nuts, eggs, gluten?" onChange={(e)=>{
+                    setPreferencedata({
+                        ...preferenceDataMod,
+                        "allergies": e.target.value
+                    })
+                }} />
+            </div>
+            <div className={styles.movieDataInput}>
+            <h5>Jungle Book or Tarzan? &nbsp; &nbsp; &nbsp; </h5> 
+                <div style={{"display":"flex", "flexDirection": "column"}}>
+                    <div style={{"display":"flex"}}>
+                        <input value="jungleBook" required type="radio" id="JungleBook" name="movieRadio" onChange={(e)=>{
+                            setPreferencedata({
+                                ...preferenceDataMod,
+                                "_id":user._id,
+                                "movie": e.target.value
+                            })
+                        }} />
+                        <label htmlFor="JungleBook"> Jungle Book</label>
+                    </div>
+                    <div style={{"display":"flex"}}>
+                        <input value="tarzan" required type="radio" id="movie" name="movieRadio" onChange={(e)=>{
+                            setPreferencedata({
+                                ...preferenceDataMod,
+                                "_id":user._id,
+                                "movie": e.target.value
+                            })
+                        }} />
+                        <label htmlFor="movie"> Tarzan</label>
+                    </div>
+                </div>
+            </div>     
+            {formThreeSubmition? <>
+                <br></br>
+                <br></br>
+                Cucu!
+                <br></br>
+                <br></br>
+                <CircularProgress />
+                <br></br>
+                <br></br>
+            </>:<>
+                <br></br>
+                <CardTravelIcon /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <LoyaltyIcon />
+                <br></br>
+                <input type="submit" value="Submit" className={styles.submitBTN} />
+                <br></br>
+
+            </>}
+            </form>
+        </div>
         </>
     )
 }
@@ -240,7 +348,8 @@ console.log(user)
                 {formTwo()}
 
             </>: registerStep===2&& <>
-
+                <div id="anchorOne" />
+                {formThree()}
             </>}
             </div>
         </>
