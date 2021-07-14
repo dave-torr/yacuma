@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Image from "next/image"
 
@@ -31,11 +31,59 @@ export default function WelcomeGuestPage(props){
 
 const [user, { mutate }] =useUser();
 
+/////////////////////////////////////////////////////////
+// STATE
     const [mapVisController, setMapVis] = useState(false)
     const [birdVisContr, setBirdVisCont] =useState(false)
     const [koriotoVisContr, setKoriotoVisCont] =useState(true)
     const [dialogController, setDialogCont] = useState(false)
     const [imageDialogContent, setImgDialogCont] = useState(null)
+    const [mediaDisplayer, setMediaDisplayer] = useState()
+    const [packingListTrigg, setPackingListTrig]=useState(true)
+    const [userMenuTrigger, setUserMenuTrig]=useState(false)    
+    const [packingListObj, setPackingList]=useState({
+        "3 T-shirts":false ,
+        "3 Comfortable Pants":false ,
+        "2 or 3 sets of Underwear":false ,
+        "5 Pairs of Socks":false ,
+        "Waterproof Jacket":false ,
+        "25L - 30L Backpack":false ,
+        "Mosquito Repelent":false ,
+        "Personal Toiletries":false ,
+        "ID / Passport":false ,
+        "Camera / Binoculars":false ,
+        "Flashlight":false ,
+        "Hiking Shoes":false ,
+        "Sandals": false
+    })
+
+// /////////////////////////////////////////////////////
+// useEffects
+
+useEffect(()=>{
+    const interval = setInterval(async() => {
+        let usersPL = JSON.stringify(user.packingList)
+        let companisonPL = JSON.stringify(packingListObj)
+
+        let payload= JSON.stringify( {"_id":user._id, "updatePL": companisonPL} )
+
+
+        if(usersPL ===  companisonPL){
+            // console.log("Same")
+        } else {
+            const res = await fetch("/api/onboarding/packingList ",{
+                method: "put",
+                body: payload
+            })
+            const editedUser = await res.json()
+            if(editedUser.lastErrorObject.updatedExisting){
+                console.log("Packing List Updated")
+            }
+        }
+
+    }, 5000);
+    return () => clearInterval(interval);
+})
 
 ///////////
 // Utils
@@ -211,7 +259,7 @@ const birdIMGSection=()=>{
         </>
     )
 }
-const [mediaDisplayer, setMediaDisplayer] = useState()
+
 const koriotoSection=()=>{ 
     let iconCopper = "/assets/korioto/iconCopper.png"
     let iconTransparency = "/assets/korioto/iconTransparency20pcBlk.png"
@@ -283,7 +331,7 @@ const koriotoSection=()=>{
 
 ////////////////////////////////
 // AUTH elements
-const [userMenuTrigger, setUserMenuTrig]=useState(false)
+
 const userMenu=()=>{
     return(
         <>
@@ -313,8 +361,37 @@ const userMenu=()=>{
         </>
     )
 }
-const [packingListTrigg, setPackingListTrig]=useState(true)
 const packingList=()=>{ 
+    let checkboxItems=[
+        "3 T-shirts",
+        "3 Comfortable Pants",
+        "2 or 3 sets of Underwear",
+        "5 Pairs of Socks",
+        "Waterproof Jacket",
+        "25L - 30L Backpack",
+        "Mosquito Repelent",
+        "Personal Toiletries",
+        "ID / Passport",
+        "Camera / Binoculars",
+        "Flashlight",
+        "Hiking Shoes",
+        "Sandals"
+    ]
+
+    let eachPackingItem=checkboxItems.map((elem, i)=><React.Fragment key={i}>
+        <div className={styles.aCheckboxContainer}> 
+            <input type="checkbox" id={`checkBX${i}`}
+            onChange={(e)=>{
+                // console.log(e.target.checked, "checked:", elem)
+                setPackingList({
+                    ...packingListObj,
+                    [elem]:e.target.checked
+                })
+            }} />
+            <label htmlFor={`checkBX${i}`}> {elem} </label>
+        </div>
+    </React.Fragment>)
+
     return(
         <>
             <div className={styles.aYacumaSection}> 
@@ -324,8 +401,8 @@ const packingList=()=>{
                         setPackingListTrig(false)
                     } else { setPackingListTrig(true) }
                 }}> Packing List <Brightness5Icon /> </h1>
-                <div>
-                    
+                <div className={styles.checkboxContainer}>
+                    {eachPackingItem}
                 </div>
             </>:<> 
                 <h1 className={styles.aSectionTitleCLOSED} onClick={()=>{
@@ -446,7 +523,8 @@ const YacumaFooter=()=>{
                 {/* {aboutYacuma()} */}
                 {/* {itineraries()} */}
                 {/* {selectedPlaylists()} */}
-                {packingList()}
+                {user&&<>
+                    {packingList()}</>}
                 {locationAndMap()}
                 {birdIMGSection()}
                 {koriotoSection()}

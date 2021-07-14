@@ -37,7 +37,8 @@ console.log(hashedPassword)
       personalPreferences: null,
       clientType: "b2c",
       signUpStream: "website",
-       })
+      packingList: null
+    })
     .then(({ ops }) => ops[0]);
       req.logIn(user, (err) => {
       if (err) throw err;
