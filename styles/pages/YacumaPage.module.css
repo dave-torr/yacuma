@@ -412,6 +412,34 @@
     font-size: 1.5em;
 }
 
+.packingListIcons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.checkboxContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 30vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.aCheckboxContainer{
+    margin: 9px;
+    display: flex;
+}
+
+.aCheckboxLabel{
+    width: 180px;
+    margin-left: 9px;
+}
+
+
 @media screen and (max-width:1080px){
     .gMapsBTN{
         padding: 12px 21px;

@@ -15,6 +15,10 @@ import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import ListIcon from '@material-ui/icons/List';
 
+import AllOutIcon from '@material-ui/icons/AllOut';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import FilterHdrIcon from '@material-ui/icons/FilterHdr';
+
 import { Dialog } from "@material-ui/core";
 
 import {useUser} from "../utils/auth/userHook"
@@ -60,14 +64,21 @@ const [user, { mutate }] =useUser();
 // /////////////////////////////////////////////////////
 // useEffects
 
+// packing list checked or not:
 useEffect(()=>{
+    if(user){
+        if(user.packingList){
+            setPackingList({...user.packingList})
+        }
+    }
+},[user])
+// Packing list auto update
+useEffect(()=>{
+    if(user){
     const interval = setInterval(async() => {
         let usersPL = JSON.stringify(user.packingList)
         let companisonPL = JSON.stringify(packingListObj)
-
         let payload= JSON.stringify( {"_id":user._id, "updatePL": companisonPL} )
-
-
         if(usersPL ===  companisonPL){
             // console.log("Same")
         } else {
@@ -80,9 +91,9 @@ useEffect(()=>{
                 console.log("Packing List Updated")
             }
         }
-
     }, 5000);
     return () => clearInterval(interval);
+    }
 })
 
 ///////////
@@ -380,15 +391,14 @@ const packingList=()=>{
 
     let eachPackingItem=checkboxItems.map((elem, i)=><React.Fragment key={i}>
         <div className={styles.aCheckboxContainer}> 
-            <input type="checkbox" id={`checkBX${i}`}
+            <input type="checkbox" id={`checkBX${i}`} checked={packingListObj[elem]}
             onChange={(e)=>{
-                // console.log(e.target.checked, "checked:", elem)
                 setPackingList({
                     ...packingListObj,
                     [elem]:e.target.checked
                 })
             }} />
-            <label htmlFor={`checkBX${i}`}> {elem} </label>
+            <label htmlFor={`checkBX${i}`} className={styles.aCheckboxLabel}> {elem} </label>
         </div>
     </React.Fragment>)
 
@@ -401,6 +411,18 @@ const packingList=()=>{
                         setPackingListTrig(false)
                     } else { setPackingListTrig(true) }
                 }}> Packing List <Brightness5Icon /> </h1>
+                <h3> Make sure you have everything before leaving! </h3>
+                <div className={styles.packingListIcons}> 
+                    <div>
+                    <AllOutIcon/> 
+                    </div>
+                    <div>
+                    <AssignmentTurnedInIcon />
+                    </div>
+                    <div>
+                    <FilterHdrIcon />
+                    </div>
+                </div>
                 <div className={styles.checkboxContainer}>
                     {eachPackingItem}
                 </div>
