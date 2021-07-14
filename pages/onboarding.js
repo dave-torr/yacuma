@@ -188,6 +188,15 @@ const formTwo=()=>{
                         }} />
                     </div>
                     <div className={styles.aFormDataInput}>  
+                        <label htmlFor="ID / Passport" className={styles.formTwoLabel}> ID / Passport: *</label>
+                        <input className={styles.anInput} required type="text" id="ID / Passport" placeholder="Cedula, DNI, etc" onChange={(e)=>{
+                            setPersonalDataMod({
+                                ...personalDataMod,
+                                "idOrPass": e.target.value
+                            })
+                        }} />
+                    </div>
+                    <div className={styles.aFormDataInput}>  
                         <label htmlFor="Home Address" className={styles.formTwoLabel}> Home Address: *</label>
                         <input className={styles.anInput} required type="text" id="Home Address" placeholder="Home Address" onChange={(e)=>{
                             setPersonalDataMod({
