@@ -14,10 +14,13 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import ListIcon from '@material-ui/icons/List';
-
 import AllOutIcon from '@material-ui/icons/AllOut';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import FilterHdrIcon from '@material-ui/icons/FilterHdr';
+
+import { CircularProgress } from '@material-ui/core';
+
+
 
 import { Dialog } from "@material-ui/core";
 
@@ -43,8 +46,12 @@ const [user, { mutate }] =useUser();
     const [dialogController, setDialogCont] = useState(false)
     const [imageDialogContent, setImgDialogCont] = useState(null)
     const [mediaDisplayer, setMediaDisplayer] = useState()
+    
+    // TRIGGERS
     const [packingListTrigg, setPackingListTrig]=useState(true)
-    const [userMenuTrigger, setUserMenuTrig]=useState(false)    
+    const [userMenuTrigger, setUserMenuTrig]=useState(false)
+    const [logInTrig, setLogIntrigg] = useState(false)
+
     const [packingListObj, setPackingList]=useState({
         "3 T-shirts":false ,
         "3 Comfortable Pants":false ,
@@ -342,7 +349,49 @@ const koriotoSection=()=>{
 
 ////////////////////////////////
 // AUTH elements
+const [submitUser, setSubmitUser]=useState(false)
+const [errorMsg, setErrorMsg] = useState("")
+const logInForm=()=>{
+    return(
+        <>
+            <div className={styles.logInFormCont}>
+                <h3> Log In Here:</h3>
+                <form className={styles.signINForm} onSubmit={async(e)=>{
+                    setSubmitUser(true)
+                    e.preventDefault();
+                        const body = {
+                        email: e.currentTarget.email.value,
+                        password: e.currentTarget.password.value,
+                        };
 
+                    const res = await fetch('/api/auth/auth', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body),
+                    });
+                    if (res.status === 200) {
+                        const userObj = await res.json();
+                        mutate(userObj);
+                        setUserMenuTrig(false)
+                    } else {
+                        setErrorMsg('Incorrect username or password. Try again!');
+                        setSubmitUser(false)
+                    }
+                }}>
+                    <input className={styles.logInInput} type="email" id="logInEmailID" name="email" placeholder="Your Email*" required/>
+                    <input className={styles.logInInput} type="password" id="logInpasswordID" name="password" placeholder="Your Password*" required/>
+                {submitUser?<>
+                <div style={{display:"flex", width:"100%", justifyContent:"center", flexDirection:"row" }}>
+                    <CircularProgress color="primary" /></div> 
+                </>:<>
+                <button className={styles.logInBtn} type="submit">Sign In</button>
+                {errorMsg ? <p style={{ color: 'red' }}>{errorMsg}</p> : null}
+                </>}
+                </form>
+            </div>
+        </>
+    )
+}
 const userMenu=()=>{
     return(
         <>
@@ -351,17 +400,27 @@ const userMenu=()=>{
                     <div className={styles.closeMenuBTN} onClick={()=>setUserMenuTrig(false)}> close | X </div>
 
                     <div className={styles.menuOptionCont}> 
-                        {/* <div className={styles.aUserMenuOption}> edit my data </div> */}
                         <div className={styles.aUserMenuOption}> <a href="mailto:info@yacuma.travel?subject=Yacuma Ecolodge Information"> contact the yacuma team </a> </div>
+                    {user? <>
+                        {/* <div className={styles.aUserMenuOption}> edit my data </div> */}
                         <br></br>
                         <br></br>
                         <div className={styles.aUserMenuOption} 
                         onClick={async()=>{
                             await fetch('/api/auth/auth', {
-                            method: 'DELETE',
+                            method: 'POST',
                             });
-                        mutate(null);
+                        mutate(user);
                         }}> log out </div>
+                    </>:<>
+                        <br></br>
+                        <br></br>
+                        {logInTrig? <>
+                            {logInForm()}
+                        </>:<>
+                            <div className={styles.aUserMenuOption} onClick={()=>setLogIntrigg(true)} > log in! </div>
+                        </>}
+                    </>}
                     </div>
 
                     <div className={styles.menuLogoDiv}>
@@ -484,9 +543,7 @@ const socialFooterBar=()=>{
                             <MapIcon />
                         </a>
                     </div>
-                {user&&<>
-                    <div className={styles.userMenu} onClick={()=>setUserMenuTrig(true)}> <ListIcon/> </div>
-                </>}
+                <div className={styles.userMenu} onClick={()=>setUserMenuTrig(true)}> <ListIcon/> </div>
                 </div>
             </div>
         </>

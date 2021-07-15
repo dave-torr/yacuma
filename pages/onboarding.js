@@ -11,7 +11,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import { CircularProgress } from '@material-ui/core';
 
 
 export default function OnboardingPage(props){
